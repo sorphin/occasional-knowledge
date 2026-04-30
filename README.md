@@ -18,7 +18,7 @@ This repository is just a dump of things I occasionally need in daily problem so
 * [Random](#random)
 * [Raspberry PI](#raspberry)
 * [GLSL](#GLSL)
-* [Apple Dev][#Apple]
+* [Apple Dev](#Apple)
 
 ---
 
