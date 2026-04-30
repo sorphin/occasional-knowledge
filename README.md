@@ -18,6 +18,7 @@ This repository is just a dump of things I occasionally need in daily problem so
 * [Random](#random)
 * [Raspberry PI](#raspberry)
 * [GLSL](#GLSL)
+* [Apple Dev][#Apple]
 
 ---
 
@@ -1115,3 +1116,35 @@ Defines:
 ```#define R return```
 ```~ph precision highp~uf uniform~T return~S smoothstep~N normalize~L length~cl clamp~Z floor~B abs~U min~G max~W vec3~V vec2~X vec4~F float~E 1e-2~MAXD 240~TAU ${TAU}~H0 uvec4(9,7,5,3)*23205u~D gl_VertexID```
 where every ~ gets replaced with a \n#define 
+
+## Apple
+Apple Dev Stuff
+
+Check code signature
+```
+codesign -dv --verbose=4 /Applications/YourApp.app
+```
+
+
+Verify signature is valid
+```
+codesign --verify --deep --strict --verbose=2 /Applications/YourApp.app
+```
+
+
+Check notarization (Gatekeeper)
+```
+spctl --assess --verbose /Applications/YourApp.app
+```
+
+
+Check notarization ticket (stapled)
+```
+stapler validate /Applications/YourApp.app
+```
+
+
+Quick one-liner — all checks combined
+```
+APP="/Applications/YourApp.app" && echo "=== Signature ===" && codesign -dv "$APP" 2>&1 | grep -E "Authority|TeamID|Signature" && echo "=== Gatekeeper ===" && spctl --assess --verbose "$APP" 2>&1 && echo "=== Stapled ticket ===" && stapler validate "$APP"
+```
